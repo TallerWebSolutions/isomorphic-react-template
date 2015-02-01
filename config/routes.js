@@ -1,5 +1,8 @@
 import getPhotos from '../actions/getPhotos';
+import setCurrentPhoto from '../actions/setCurrentPhoto';
 import getI18n from '../actions/getI18n';
+import {SET_CURRENT_PHOTO} from '../actions';
+import { NavLink } from 'flux-router-component';
 
 
 export default {
@@ -22,6 +25,38 @@ export default {
         else context.executeAction(getI18n, {locale: locale}, resolve);
       });
       Promise.all([photosPromise, i18nPromise]).then(() => { done() }); 
+    }
+  },
+
+  photo: {
+    path: '/photo/:id',
+    method: 'get',
+    page: 'home',
+    label: 'Photo',
+    action: function(context, payload, done) {
+      context.dispatch('UPDATE_PAGE_TITLE', {
+        pageTitle: 'Photo | flux-examples | routing'
+      });
+
+      const locale = payload.navigate.locale;
+      // Promessas a serem resolvidas.
+      const photosPromise = new Promise((resolve, reject) => {
+        context.executeAction(getPhotos, {}, function () {
+          // Set the current selected photo.
+          context.executeAction(setCurrentPhoto, {
+            current_photo: payload.params.id
+          }, resolve);
+        });
+      });
+
+      const i18nPromise = new Promise((resolve, reject) => {
+        if (!locale) resolve();
+        else context.executeAction(getI18n, {locale: locale}, resolve);
+      });
+      
+      Promise.all([photosPromise, i18nPromise]).then(() => { done() }); 
+
+      
     }
   },
 

@@ -36,7 +36,7 @@ server.use(express.static(publicPath, { maxAge: 365*24*60*60 }));
 
 // configure fetchr (for doing api calls server and client-side)
 const fetchr = app.getPlugin('FetchrPlugin');
-map(requireDir('../services/'), service => fetchr.registerService(service) );
+map(requireDir('../services/'), service => fetchr.registerService(service));
 
 // set up fetchr middleware
 server.use(fetchr.getXhrPath(), fetchr.getMiddleware());

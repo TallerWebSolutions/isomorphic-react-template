@@ -1,4 +1,4 @@
-import keyMirror from 'keyMirror'
+import keyMirror from 'keymirror'
 
 // index of actions constants
 export default keyMirror({
@@ -8,7 +8,8 @@ export default keyMirror({
   RECEIVE_I18N_SUCCESS: null,
 
   // PhotosStore
-  RECEIVE_PHOTOS: null
+  RECEIVE_PHOTOS: null,
+  SET_CURRENT_PHOTO: null
 
 
 });

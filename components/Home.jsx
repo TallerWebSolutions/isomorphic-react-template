@@ -23,16 +23,17 @@ const Home = React.createClass({
 
   getState() {
     const storeState = this.getStore(PhotosStore).getState();
-    return assign(storeState, {
-      currentIndex: 0
-    });
+    // return assign(storeState, {
+    //   current_photo: 0
+    // });
+    return storeState;
   },
 
   render() {
     if (BROWSER) require('../style/components/home.scss');
 
-    const { currentIndex, photos } = this.state;
-    const photo = photos[currentIndex];
+    const { current_photo, photos } = this.state;
+    const photo = photos[current_photo];
 
     return (
       <div className="home" 

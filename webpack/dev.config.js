@@ -8,7 +8,7 @@ var shared = require('./shared');
 module.exports = {
   name: 'client-dev',
   entry: [
-    'webpack-dev-server/client?http://localhost:3001',
+    'webpack-dev-server/client?http://10.0.3.175:3001',
     'webpack/hot/only-dev-server',
     shared.entry,
   ],

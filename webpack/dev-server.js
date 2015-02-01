@@ -11,7 +11,7 @@ const compiler = webpack(config);
 const debug = require('debug')('App:WebpackDevServer');
 
 const options = {
-  contentBase: 'http://localhost:3001',
+  contentBase: 'http://10.0.3.175:3001',
   quiet: true,
   noInfo: true,
   hot: true,
@@ -24,9 +24,9 @@ const options = {
 const server = new WebpackDevServer(compiler, options);
 
 export default function (app) {
-  const proxyUrl = `http://localhost:3001${config.output.publicPath}`;
+  const proxyUrl = `http://10.0.3.175:3001${config.output.publicPath}`;
   app.use(config.output.publicPath, proxy(url.parse(proxyUrl)));
-  server.listen(3001, 'localhost', () => {
+  server.listen(3001, '10.0.3.175', () => {
     debug(`Webpack development server listening on %d (will proxy %s)`, 3001, config.output.publicPath);
   });
 }
